@@ -1,0 +1,38 @@
+.nav{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(140%) blur(8px);
+  background:color-mix(in oklab, var(--green-900) 85%, transparent);
+  border-bottom:1px solid #ffffff14;
+}
+.nav__inner{display:flex; align-items:center; gap:16px; height:64px}
+.nav a{color:var(--cream-100); text-decoration:none; opacity:.9}
+.nav a:hover{opacity:1}
+.nav__brand{font-family:"EB Garamond"; font-weight:700; font-size:1.2rem; letter-spacing:.04em}
+
+.card{
+  background:linear-gradient(180deg,var(--green-600),#0c231d 60%);
+  border:1px solid #ffffff14; border-radius:var(--radius-lg);
+  box-shadow:var(--shadow-1); overflow:hidden; transform:translateZ(0);
+  transition:transform .16s var(--ease), box-shadow .16s var(--ease), border-color .16s var(--ease);
+}
+.card:hover{transform:scale(1.02); box-shadow:var(--shadow-2); border-color:#ffffff24}
+.card__media{aspect-ratio:16/9; background:#0b1f1a url('/placeholder-16x9.jpg') center/cover no-repeat}
+.card__body{padding:20px}
+.card__title{font-family:"EB Garamond"; font-weight:600; font-size:1.4rem}
+
+.btn{
+  appearance:none; border:1px solid #ffffff24; color:var(--ink);
+  background:var(--gold-500); border-radius:999px; padding:10px 16px;
+  font-weight:700; cursor:pointer;
+}
+.btn--ghost{background:transparent; color:var(--cream-100); border-color:#ffffff24}
+.btn:focus-visible{outline:2px solid var(--gold-500); outline-offset:2px}
+
+.hours{
+  display:grid; gap:8px; padding:16px; border:1px solid #ffffff14; border-radius:var(--radius-md);
+  background:#0c231d
+}
+
+.footer{
+  padding:48px 0; border-top:1px solid #ffffff14; color:#dcd7ca;
+}
