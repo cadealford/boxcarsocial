@@ -57,8 +57,12 @@ function Home(){
 function City(){
   return (
     <>
-      <HeroVideo cityPoster="/placeholder-21x9.jpg" heading="City Name, ST"
-        sub="Traditional ideas, contemporary execution." />
+      <HeroVideo
+        cityPoster="/placeholder-21x9.jpg"
+        overline="Visit Our Cities"
+        heading="City Name, ST"
+        sub="Traditional ideas, contemporary execution."
+      />
       <Section overline="Opening Times" title="The Taproom & The Parlor" tight>
         <div className="hours">
           <div><strong>The Parlor</strong><br/>Tue–Sat 5pm–1am · Sun 4pm–12am</div>
@@ -86,7 +90,12 @@ function City(){
 }
 
 /* ---------- Building blocks ---------- */
-function HeroVideo({cityPoster="/placeholder-21x9.jpg", heading="Welcome Home", sub=""}){
+function HeroVideo({
+  cityPoster="/placeholder-21x9.jpg",
+  overline="YOUR NEW FAVORITE SPORTS BAR",
+  heading="OFF THE RAILS. ON THE ROCKS.",
+  sub="More than just a bar; we're excited to provide a community space for all watch parties, social gatherings, special events, and more!",
+}){
   return (
     <section className="section" style={{paddingTop:0}}>
       <div className="container">
@@ -98,8 +107,8 @@ function HeroVideo({cityPoster="/placeholder-21x9.jpg", heading="Welcome Home", 
             </video>
           </div>
           <div style={{marginTop:16}}>
-            <div className="overline">Welcome Home</div>
-            <h1>{heading}</h1>
+            {overline && <div className="overline">{overline}</div>}
+            {heading && <h1>{heading}</h1>}
             {sub && <p style={{maxWidth:720, color:"var(--cream-300)"}}>{sub}</p>}
           </div>
         </motion.div>
