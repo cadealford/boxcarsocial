@@ -1,2 +1,15 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
 node_modules/
-.vite/
+
+# Build output
+dist/
+
+# Editor directories and files
+.DS_Store
+.vscode/
+.idea/

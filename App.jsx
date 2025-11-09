@@ -1,8 +1,7 @@
-import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider, Link, Outlet } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
-import "./styles/brand.css";
-import "./styles/components.css";
+import { motion } from "framer-motion";
+import "./brand.css";
+import "./components.css";
 
 const router = createBrowserRouter([
   { path: "/", element: <Shell />, children: [
@@ -18,11 +17,17 @@ function Shell(){
     <>
       <nav className="nav">
         <div className="container nav__inner">
-          <Link className="nav__brand" to="/">The Placeholder Rabbit</Link>
-          <div style={{marginLeft:"auto", display:"flex", gap:12}}>
-            <Link to="/city/nyc">New York</Link>
-            <Link to="/city/atx">Austin</Link>
-            <Link to="/city/dc">DC</Link>
+          <Link className="nav__brand" to="/">
+            <img
+              src="/logo.png"
+              alt="Boxcar Social"
+              className="nav__brand-logo"
+            />
+          </Link>
+          <div className="nav__links">
+            <Link to="/menus">Menus</Link>
+            <Link to="/contact">Contact</Link>
+            <Link to="/book-event">Book an Event</Link>
           </div>
         </div>
       </nav>
@@ -39,33 +44,11 @@ function Home(){
   return (
     <>
       <HeroVideo />
-      <Section overline="Locations" title="Choose a Location">
-        <div className="grid cards">
-          {["New York City, NY","Austin, TX","Washington, D.C."].map((city,i)=>(
-            <Card key={city} i={i}
-              title={city}
-              img="/placeholder-16x9.jpg"
-              actions={<Link className="btn btn--ghost" to={`/city/${slugify(city)}`}>View Location</Link>}
-            />
-          ))}
-        </div>
-      </Section>
-
       <Section overline="Events" title="What’s On?">
         <EventGrid />
       </Section>
 
-      <Section overline="Culture" title="Our Culture" tight>
-        <div className="grid cards">
-          {["Irish Arts & Culture","That’s Deadly","Modern Makers"].map((t,i)=>(
-            <Card key={t} i={i} title={t} img="/placeholder-16x9.jpg"
-              actions={<button className="btn btn--ghost">Explore</button>} />
-          ))}
-        </div>
-      </Section>
-
-      <CTA title="Reserve a Table" primary={{label:"Reserve", href:"#"}}
-           secondary={{label:"Gift Cards", href:"#"}} />
+      <LocationMap />
     </>
   );
 }
@@ -188,6 +171,29 @@ function CTA({title, primary, secondary}){
           <h3 style={{margin:0, flex:1}}>{title}</h3>
           {secondary && <a className="btn btn--ghost" href={secondary.href}>{secondary.label}</a>}
           {primary && <a className="btn" href={primary.href}>{primary.label}</a>}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LocationMap(){
+  return (
+    <section className="section section--tight">
+      <div className="container" style={{textAlign:"center"}}>
+        <div className="overline">Visit Us</div>
+        <h3 style={{marginBottom:16}}>Boxcar Social · 216 N Edward Gary St, San Marcos, TX</h3>
+        <div style={{borderRadius:"16px", overflow:"hidden", border:"1px solid #ffffff24"}}>
+          <iframe
+            title="Boxcar Social Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.4066735209744!2d-97.9415932244525!3d29.881380575006055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865ca9eb3a6a47e3%3A0x5b759eaee43abee8!2sBoxcar%20Social%20SMTX!5e0!3m2!1sen!2sus!4v1762725442005!5m2!1sen!2sus"
+            width="100%"
+            height="420"
+            style={{border:0}}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
       </div>
     </section>
