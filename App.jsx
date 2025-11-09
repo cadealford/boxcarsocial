@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createBrowserRouter, RouterProvider, Link, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./brand.css";
@@ -44,6 +45,7 @@ function Home(){
   return (
     <>
       <HeroVideo />
+      <GallerySection />
       <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
         <EventGrid />
       </Section>
@@ -235,6 +237,46 @@ function LocationMap(){
         </div>
       </div>
     </section>
+  );
+}
+
+function GallerySection(){
+  return (
+    <Section overline="Gallery" title="Inside the Parlor" bgWord="Gallery" className="section--gallery">
+      <Gallery />
+    </Section>
+  );
+}
+
+function Gallery(){
+  const slides = [
+    {id:1, img:"/placeholder-16x9.jpg", caption:"Parlor Seating"},
+    {id:2, img:"/placeholder-16x9.jpg", caption:"Signature Cocktails"},
+    {id:3, img:"/placeholder-16x9.jpg", caption:"Game Day Crowd"},
+    {id:4, img:"/placeholder-16x9.jpg", caption:"Chef’s Specials"},
+    {id:5, img:"/placeholder-16x9.jpg", caption:"Live Music Nights"},
+  ];
+  const visible = 3;
+  const [index, setIndex] = useState(0);
+  const advance = (delta) => {
+    setIndex((prev)=> (prev + delta + slides.length) % slides.length);
+  };
+  const view = Array.from({length:visible},(_,i)=> slides[(index + i) % slides.length]);
+  return (
+    <div className="gallery">
+      <button className="gallery__nav gallery__nav--prev" data-cursor="view-more" onClick={()=>advance(-1)} aria-label="Previous photos">‹</button>
+      <div className="gallery__viewport">
+        <div className="gallery__track" style={{gridTemplateColumns:`repeat(${visible}, minmax(0,1fr))`}}>
+          {view.map((item)=>(
+            <article key={item.id} className="gallery__item">
+              <div className="gallery__img" style={{backgroundImage:`url(${item.img})`}} />
+              <div className="gallery__caption">{item.caption}</div>
+            </article>
+          ))}
+        </div>
+      </div>
+      <button className="gallery__nav gallery__nav--next" data-cursor="view-more" onClick={()=>advance(1)} aria-label="Next photos">›</button>
+    </div>
   );
 }
 
