@@ -44,7 +44,7 @@ function Home(){
   return (
     <>
       <HeroVideo />
-      <Section overline="Events" title="What’s On?" bgWord="Events">
+      <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
         <EventGrid />
       </Section>
 
@@ -89,8 +89,9 @@ function City(){
         </div>
       </Section>
 
-      <Section overline="Events" title="What’s On?" bgWord="Events" />
-      <EventGrid />
+      <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
+        <EventGrid />
+      </Section>
 
       <CTA title="Book an Event Space"
            primary={{label:"Book an Event", href:"#"}}
@@ -127,10 +128,10 @@ function HeroVideo({
   );
 }
 
-function Section({overline, title, children, tight, bgWord}){
+function Section({overline, title, children, tight, bgWord, className=""}){
   const backgroundWord = bgWord || title;
   return (
-    <section className={`section ${tight?"section--tight":""}`}>
+    <section className={`section ${tight?"section--tight":""} ${className}`.trim()}>
       {backgroundWord && <span className="bg-word" aria-hidden="true">{backgroundWord}</span>}
       <div className="container">
         <motion.div initial={{opacity:0, y:12}} whileInView={{opacity:1, y:0}}
@@ -202,21 +203,24 @@ function CTA({title, primary, secondary}){
 
 function LocationMap(){
   return (
-    <section className="section section--tight">
-      <div className="container" style={{textAlign:"center"}}>
-        <div className="overline">Visit Us</div>
-        <h3 style={{marginBottom:16}}>Boxcar Social · 216 N Edward Gary St, San Marcos, TX</h3>
-        <div style={{borderRadius:"16px", overflow:"hidden", border:"1px solid #ffffff24"}}>
-          <iframe
-            title="Boxcar Social Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.4066735209744!2d-97.9415932244525!3d29.881380575006055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865ca9eb3a6a47e3%3A0x5b759eaee43abee8!2sBoxcar%20Social%20SMTX!5e0!3m2!1sen!2sus!4v1762725442005!5m2!1sen!2sus"
-            width="100%"
-            height="420"
-            style={{border:0}}
-            allowFullScreen=""
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
+    <section className="section section--tight section--location">
+      <span className="bg-word" aria-hidden="true">Location</span>
+      <div className="container location-container" style={{textAlign:"center"}}>
+        <div className="location-content">
+          <div className="overline">Visit Us</div>
+          <h3 style={{marginBottom:16}}>Boxcar Social · 216 N Edward Gary St, San Marcos, TX</h3>
+          <div style={{borderRadius:"16px", overflow:"hidden", border:"1px solid #ffffff24"}}>
+            <iframe
+              title="Boxcar Social Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.4066735209744!2d-97.9415932244525!3d29.881380575006055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865ca9eb3a6a47e3%3A0x5b759eaee43abee8!2sBoxcar%20Social%20SMTX!5e0!3m2!1sen!2sus!4v1762725442005!5m2!1sen!2sus"
+              width="100%"
+              height="420"
+              style={{border:0}}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </div>
     </section>

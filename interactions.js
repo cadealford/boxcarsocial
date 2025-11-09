@@ -162,10 +162,11 @@ const applyBgWordScroll = () => {
     word.dataset.bgWordAnimated = "true";
     gsap.fromTo(
       word,
-      { y: 80, opacity: 0.06 },
+      { x: "-20vw", y: 60, opacity: 0.08 },
       {
-        y: -80,
-        opacity: 0.12,
+        x: "10vw",
+        y: -40,
+        opacity: 0.2,
         ease: "none",
         scrollTrigger: {
           id: `bg-word-${index}`,
