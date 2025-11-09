@@ -106,22 +106,30 @@ function HeroVideo({
   overline="YOUR NEW FAVORITE SPORTS BAR",
   heading="OFF THE RAILS. ON THE ROCKS.",
   sub="More than just a bar; we're excited to provide a community space for all watch parties, social gatherings, special events, and more!",
+  videoSrc="/hero-video.mp4",
 }){
   return (
-    <section className="section" style={{paddingTop:0}}>
-      <div className="container">
-        <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:.6, ease:"easeOut"}}>
-          <div style={{borderRadius:"16px", overflow:"hidden", border:"1px solid #ffffff24"}}>
-            <video playsInline muted loop autoPlay
-                   poster={cityPoster} style={{width:"100%", display:"block"}}>
-              <source src="/placeholder-video.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div style={{marginTop:16}}>
-            {overline && <div className="overline">{overline}</div>}
-            {heading && <h1>{heading}</h1>}
-            {sub && <p style={{maxWidth:720, color:"var(--cream-300)"}}>{sub}</p>}
-          </div>
+    <section className="hero">
+      <video
+        className="hero__video"
+        playsInline
+        muted
+        loop
+        autoPlay
+        poster={cityPoster}
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+      <div className="hero__overlay" aria-hidden="true" />
+      <div className="container hero__content">
+        <motion.div
+          initial={{opacity:0, y:10}}
+          animate={{opacity:1, y:0}}
+          transition={{duration:.6, ease:"easeOut"}}
+        >
+          {overline && <div className="overline">{overline}</div>}
+          {heading && <h1 className="hero__title">{heading}</h1>}
+          {sub && <p className="hero__sub">{sub}</p>}
         </motion.div>
       </div>
     </section>

@@ -13,9 +13,16 @@ root.render(
 
 if (typeof window !== "undefined") {
   const bootInteractions = () => {
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     mountCursor();
     initSmoothScroll();
     initBgWordScroll();
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    }
   };
 
   if (document.readyState === "complete") {

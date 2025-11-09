@@ -51,11 +51,13 @@ h1,h2,h3,h4{
   font-size:clamp(3rem, 18vw, 12rem);
   letter-spacing:.24em;
   text-transform:uppercase;
+  font-weight:700;
   display:flex;
   align-items:center;
   justify-content:center;
-  opacity:.18;
-  color:#fffefa;
+  opacity:.32;
+  color:#fff;
+  text-shadow:0 6px 30px rgba(0,0,0,.55), 0 0 12px rgba(255,255,255,.25);
   pointer-events:none;
   z-index:1;
   user-select:none;
@@ -64,7 +66,8 @@ h1,h2,h3,h4{
 .section--location .bg-word{
   align-items:flex-start;
   padding-top:24px;
-  opacity:.32;
+  opacity:.42;
+  text-shadow:0 8px 36px rgba(0,0,0,.65), 0 0 18px rgba(255,255,255,.35);
 }
 .section--location .location-container{
   position:relative;
@@ -78,7 +81,8 @@ h1,h2,h3,h4{
 .section--events .bg-word{
   align-items:flex-start;
   padding-top:16px;
-  opacity:.28;
+  opacity:.36;
+  text-shadow:0 6px 30px rgba(0,0,0,.6), 0 0 14px rgba(255,255,255,.3);
 }
 .section--events .container{
   padding-top:120px;
