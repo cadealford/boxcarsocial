@@ -121,8 +121,11 @@ function HeroVideo({
         <source src={videoSrc} type="video/mp4" />
       </video>
       <div className="hero__overlay" aria-hidden="true" />
+      <div className="hero__logo" aria-hidden="true">
+        <img src="/logo.png" alt="" />
+      </div>
       <div className="container hero__content">
-        <motion.div
+        <motion.div className="hero__text"
           initial={{opacity:0, y:10}}
           animate={{opacity:1, y:0}}
           transition={{duration:.6, ease:"easeOut"}}
