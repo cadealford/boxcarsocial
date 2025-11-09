@@ -25,9 +25,9 @@ function Shell(){
             />
           </Link>
           <div className="nav__links">
-            <Link to="/menus">Menus</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/book-event">Book an Event</Link>
+            <Link data-cursor="view-more" to="/menus">Menus</Link>
+            <Link data-cursor="view-more" to="/contact">Contact</Link>
+            <Link data-cursor="view-more" to="/book-event">Book an Event</Link>
           </div>
         </div>
       </nav>
@@ -44,7 +44,7 @@ function Home(){
   return (
     <>
       <HeroVideo />
-      <Section overline="Events" title="What’s On?">
+      <Section overline="Events" title="What’s On?" bgWord="Events">
         <EventGrid />
       </Section>
 
@@ -63,23 +63,33 @@ function City(){
         heading="City Name, ST"
         sub="Traditional ideas, contemporary execution."
       />
-      <Section overline="Opening Times" title="The Taproom & The Parlor" tight>
+      <Section
+        overline="Opening Times"
+        title="The Taproom & The Parlor"
+        tight
+        bgWord="Taproom"
+      >
         <div className="hours">
           <div><strong>The Parlor</strong><br/>Tue–Sat 5pm–1am · Sun 4pm–12am</div>
           <div><strong>The Taproom</strong><br/>Sun–Thu 11am–2am · Fri–Sat 11am–3am</div>
         </div>
       </Section>
 
-      <Section overline="Menus" title="Food, Cocktails, Beer & Wine" tight>
+      <Section
+        overline="Menus"
+        title="Food, Cocktails, Beer & Wine"
+        tight
+        bgWord="Menus"
+      >
         <div className="grid cards">
           <Card title="Downstairs | Taproom Menu" img="/placeholder-16x9.jpg"
-            actions={<a className="btn" href="#">View Menu</a>} />
+            actions={<a className="btn" data-cursor="view-more" href="#">View Menu</a>} />
           <Card title="Upstairs | Parlor Menu" img="/placeholder-16x9.jpg"
-            actions={<a className="btn" href="#">View Menu</a>} />
+            actions={<a className="btn" data-cursor="view-more" href="#">View Menu</a>} />
         </div>
       </Section>
 
-      <Section overline="Events" title="What’s On?" />
+      <Section overline="Events" title="What’s On?" bgWord="Events" />
       <EventGrid />
 
       <CTA title="Book an Event Space"
@@ -117,9 +127,11 @@ function HeroVideo({
   );
 }
 
-function Section({overline, title, children, tight}){
+function Section({overline, title, children, tight, bgWord}){
+  const backgroundWord = bgWord || title;
   return (
     <section className={`section ${tight?"section--tight":""}`}>
+      {backgroundWord && <span className="bg-word" aria-hidden="true">{backgroundWord}</span>}
       <div className="container">
         <motion.div initial={{opacity:0, y:12}} whileInView={{opacity:1, y:0}}
           viewport={{once:true, amount:.25}} transition={{duration:.45, ease:"easeOut"}}>
@@ -146,6 +158,7 @@ function Stagger({children}){
 function Card({title,img,actions,i}){
   return (
     <motion.article className="card"
+      data-cursor="view-more"
       whileHover={{scale:1.02}} transition={{type:"spring", stiffness:300, damping:20}}>
       <div className="card__media" style={{backgroundImage:`url(${img})`}} />
       <div className="card__body">
@@ -166,7 +179,7 @@ function EventGrid(){
     <div className="grid cards">
       {sample.map((e,i)=>(
         <Card key={i} title={`${e.title}`} img="/placeholder-16x9.jpg"
-          actions={<button className="btn btn--ghost">Details</button>} />
+          actions={<button className="btn btn--ghost" data-cursor="view-more">Details</button>} />
       ))}
     </div>
   );
@@ -176,10 +189,11 @@ function CTA({title, primary, secondary}){
   return (
     <section className="section section--tight">
       <div className="container">
-        <div className="card" style={{display:"flex", alignItems:"center", gap:16, padding:24}}>
+        <div className="card" data-cursor="view-more"
+          style={{display:"flex", alignItems:"center", gap:16, padding:24}}>
           <h3 style={{margin:0, flex:1}}>{title}</h3>
-          {secondary && <a className="btn btn--ghost" href={secondary.href}>{secondary.label}</a>}
-          {primary && <a className="btn" href={primary.href}>{primary.label}</a>}
+          {secondary && <a className="btn btn--ghost" data-cursor="view-more" href={secondary.href}>{secondary.label}</a>}
+          {primary && <a className="btn" data-cursor="view-more" href={primary.href}>{primary.label}</a>}
         </div>
       </div>
     </section>
