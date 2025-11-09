@@ -108,7 +108,3 @@
   white-space:nowrap;
 }
 .cursor-dot__label.is-visible{opacity:1}
-@media (prefers-reduced-motion: reduce){
-  .cursor-dot{display:none}
-  .has-custom-cursor body{cursor:auto}
-}

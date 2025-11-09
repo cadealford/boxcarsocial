@@ -21,7 +21,7 @@ export function mountCursor() {
   if (typeof window === "undefined") return;
   document.documentElement.classList.add("is-js");
 
-  if (prefersReducedMotion() || document.querySelector(".cursor-dot")) return;
+  if (document.querySelector(".cursor-dot")) return;
 
   const cursor = document.createElement("div");
   cursor.className = "cursor-dot";
