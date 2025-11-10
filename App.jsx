@@ -8,6 +8,7 @@ const router = createBrowserRouter([
   { path: "/", element: <Shell />, children: [
     { index: true, element: <Home /> },
     { path: "city/:slug", element: <City /> },
+    { path: "menus", element: <MenuPage /> },
     { path: "contact", element: <ContactPage /> },
     { path: "book-event", element: <BookEventPage /> },
   ]},
@@ -28,6 +29,7 @@ function Shell(){
             />
           </Link>
           <div className="nav__links">
+            <Link data-cursor="view-more" to="/">Home</Link>
             <Link data-cursor="view-more" to="/menus">Menus</Link>
             <Link data-cursor="view-more" to="/contact">Contact</Link>
             <Link data-cursor="view-more" to="/book-event">Book an Event</Link>
@@ -66,6 +68,7 @@ function City(){
         overline="Visit Our Cities"
         heading="City Name, ST"
         sub="Traditional ideas, contemporary execution."
+        videoSrc={null}
       />
       <Section
         overline="Opening Times"
@@ -113,18 +116,24 @@ function HeroVideo({
   videoSrc="/hero-video.mp4",
 }){
   return (
-    <section className="hero">
-      <video
-        className="hero__video"
-        playsInline
-        muted
-        loop
-        autoPlay
-        poster={cityPoster}
-      >
-        <source src={videoSrc} type="video/mp4" />
-      </video>
-      <div className="hero__overlay" aria-hidden="true" />
+    <section className={`hero ${videoSrc ? "" : "hero--static"}`}>
+      {videoSrc ? (
+        <>
+          <video
+            className="hero__video"
+            playsInline
+            muted
+            loop
+            autoPlay
+            poster={cityPoster}
+          >
+            <source src={videoSrc} type="video/mp4" />
+          </video>
+          <div className="hero__overlay" aria-hidden="true" />
+        </>
+      ) : (
+        <div className="hero__static" aria-hidden="true" />
+      )}
       <div className="hero__logo" aria-hidden="true">
         <img src="/logo.png" alt="" />
       </div>
@@ -291,7 +300,7 @@ function ContactPage(){
         overline="Get In Touch"
         heading="We’re here for every question"
         sub="Reach out about reservations, events, or anything else."
-        videoSrc="/hero-video.mp4"
+        videoSrc={null}
       />
       <Section tight title="Contact Us" overline="Say Hello" bgWord="Contact" className="section--contact">
         <div className="contact-grid">
@@ -320,7 +329,7 @@ function BookEventPage(){
         overline="Book An Event"
         heading="From watch parties to weddings"
         sub="Tell us about your gathering and we’ll tailor the perfect experience."
-        videoSrc="/hero-video.mp4"
+        videoSrc={null}
       />
       <Section tight title="Request an Experience" overline="Let’s Plan" bgWord="Events" className="section--contact">
         <div className="contact-grid">
@@ -337,6 +346,36 @@ function BookEventPage(){
             <h3>Packages</h3>
             <p>Catering · Beverage · A/V support · Game-day screens</p>
           </div>
+        </div>
+      </Section>
+    </>
+  );
+}
+
+function MenuPage(){
+  const menus = [
+    { title:"Taproom Menu", desc:"Elevated pub fare, rotating chef features.", link:"#"},
+    { title:"Parlor Menu", desc:"Cocktail-forward small plates upstairs.", link:"#"},
+    { title:"Brunch", desc:"Weekends 10am-2pm · Classics with a twist.", link:"#"},
+    { title:"Late Night", desc:"After 10pm · Shareables & comfort bites.", link:"#"},
+  ];
+  return (
+    <>
+      <HeroVideo
+        overline="Menus"
+        heading="Pouring flavor all day"
+        sub="Taproom staples, refined parlor plates, and weekend brunch favorites."
+        videoSrc={null}
+      />
+      <Section tight title="Choose Your Menu" overline="Food & Drink" bgWord="Menus" className="section--contact">
+        <div className="contact-grid">
+          {menus.map((menu)=>(
+            <div key={menu.title} className="contact-card" data-cursor="view-more">
+              <h3>{menu.title}</h3>
+              <p>{menu.desc}</p>
+              <a className="btn btn--ghost" href={menu.link}>View</a>
+            </div>
+          ))}
         </div>
       </Section>
     </>
