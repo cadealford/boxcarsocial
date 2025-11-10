@@ -50,6 +50,7 @@ function Home(){
     <>
       <HeroVideo />
       <GallerySection />
+      <SocialEmbed />
       <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
         <EventGrid />
       </Section>
@@ -226,6 +227,7 @@ function CTA({title, primary, secondary}){
 }
 
 function LocationMap(){
+  const [mapActive, setMapActive] = useState(false);
   return (
     <section className="section section--tight section--location">
       <span className="bg-word" aria-hidden="true">Location</span>
@@ -233,7 +235,11 @@ function LocationMap(){
         <div className="location-content">
           <div className="overline">Visit Us</div>
           <h3 style={{marginBottom:16}}>Boxcar Social · 216 N Edward Gary St, San Marcos, TX</h3>
-          <div style={{borderRadius:"16px", overflow:"hidden", border:"1px solid #ffffff24"}}>
+          <div className={`map-frame ${mapActive?"is-active":""}`}
+            onClick={()=>setMapActive(true)}
+            onMouseLeave={()=>setMapActive(false)}
+          >
+            {!mapActive && <div className="map-frame__overlay">Click to explore map</div>}
             <iframe
               title="Boxcar Social Location"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.4066735209744!2d-97.9415932244525!3d29.881380575006055!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865ca9eb3a6a47e3%3A0x5b759eaee43abee8!2sBoxcar%20Social%20SMTX!5e0!3m2!1sen!2sus!4v1762725442005!5m2!1sen!2sus"
@@ -243,6 +249,7 @@ function LocationMap(){
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
+              className={mapActive?"is-live":""}
             />
           </div>
         </div>
@@ -288,6 +295,23 @@ function Gallery(){
       </div>
       <button className="gallery__nav gallery__nav--next" data-cursor="view-more" onClick={()=>advance(1)} aria-label="Next photos">›</button>
     </div>
+  );
+}
+
+function SocialEmbed(){
+  return (
+    <Section tight overline="Social" title="From The Feed" bgWord="Social">
+      <div className="embed-frame">
+        <iframe
+          title="Instagram Feed"
+          src="https://emb.fouita.com/widget/0x343ff5/ftu6rc3b1"
+          width="100%"
+          height="500"
+          frameBorder="0"
+          loading="lazy"
+        />
+      </div>
+    </Section>
   );
 }
 
