@@ -228,3 +228,33 @@
   align-items:center;
   opacity:.22;
 }
+.contact-grid{
+  display:grid;
+  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+.contact-card{
+  border:1px solid #ffffff1f;
+  border-radius:var(--radius-md);
+  padding:24px;
+  background:linear-gradient(135deg, rgba(15,34,28,.9), rgba(8,20,16,.95));
+  box-shadow:var(--shadow-2);
+}
+.contact-card h3{
+  margin:0 0 8px;
+  font-family:var(--nav-font);
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--cream-100);
+}
+.contact-card p{
+  margin:0;
+  color:var(--cream-300);
+}
+.contact-card a{color:var(--cream-100); text-decoration:none}
+.contact-card--wide{
+  grid-column:1 / -1;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}

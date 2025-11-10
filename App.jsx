@@ -8,6 +8,8 @@ const router = createBrowserRouter([
   { path: "/", element: <Shell />, children: [
     { index: true, element: <Home /> },
     { path: "city/:slug", element: <City /> },
+    { path: "contact", element: <ContactPage /> },
+    { path: "book-event", element: <BookEventPage /> },
   ]},
 ]);
 
@@ -281,3 +283,62 @@ function Gallery(){
 }
 
 function slugify(s){ return s.toLowerCase().replaceAll(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,""); }
+
+function ContactPage(){
+  return (
+    <>
+      <HeroVideo
+        overline="Get In Touch"
+        heading="We’re here for every question"
+        sub="Reach out about reservations, events, or anything else."
+        videoSrc="/hero-video.mp4"
+      />
+      <Section tight title="Contact Us" overline="Say Hello" bgWord="Contact" className="section--contact">
+        <div className="contact-grid">
+          <div className="contact-card" data-cursor="view-more">
+            <h3>Email</h3>
+            <p><a href="mailto:hello@boxcarsocial.com">hello@boxcarsocial.com</a></p>
+          </div>
+          <div className="contact-card" data-cursor="view-more">
+            <h3>Phone</h3>
+            <p><a href="tel:+15125551234">(512) 555-1234</a></p>
+          </div>
+          <div className="contact-card" data-cursor="view-more">
+            <h3>Visit</h3>
+            <p>216 N Edward Gary St<br/>San Marcos, TX 78666</p>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+}
+
+function BookEventPage(){
+  return (
+    <>
+      <HeroVideo
+        overline="Book An Event"
+        heading="From watch parties to weddings"
+        sub="Tell us about your gathering and we’ll tailor the perfect experience."
+        videoSrc="/hero-video.mp4"
+      />
+      <Section tight title="Request an Experience" overline="Let’s Plan" bgWord="Events" className="section--contact">
+        <div className="contact-grid">
+          <div className="contact-card contact-card--wide" data-cursor="view-more">
+            <h3>Event Inquiry</h3>
+            <p>Send us details about your event, and our team will follow up within 24 hours.</p>
+            <a className="btn" href="mailto:events@boxcarsocial.com">Email Events</a>
+          </div>
+          <div className="contact-card" data-cursor="view-more">
+            <h3>Capacity</h3>
+            <p>Up to 150 guests · Taproom, Parlor, or whole venue</p>
+          </div>
+          <div className="contact-card" data-cursor="view-more">
+            <h3>Packages</h3>
+            <p>Catering · Beverage · A/V support · Game-day screens</p>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+}
