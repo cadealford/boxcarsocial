@@ -197,7 +197,7 @@ function Card({title,img,actions,i}){
 }
 
 function EventGrid(){
-  const sample = Array.from({length:6},(_,i)=>({
+  const sample = Array.from({length:4},(_,i)=>({
     title:`Event Title ${i+1}`,
     date:`Nov ${10+i}, 7:00 PM`,
   }));
