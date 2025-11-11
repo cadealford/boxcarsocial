@@ -181,7 +181,7 @@ function Stagger({children}){
   );
 }
 
-function Card({title,img,actions,description="Placeholder description for this module."}){
+function Card({title,img,actions=null,description="Placeholder description for this module."}){
   return (
     <motion.article className="card"
       data-cursor="view-more"
@@ -190,7 +190,11 @@ function Card({title,img,actions,description="Placeholder description for this m
       <div className="card__body">
         <div className="card__title">{title}</div>
         {description && <p style={{color:"var(--cream-300)"}}>{description}</p>}
-        <div style={{display:"flex", gap:12, marginTop:8}}>{actions}</div>
+        {actions && (
+          <div style={{display:"flex", gap:12, marginTop:8}}>
+            {actions}
+          </div>
+        )}
       </div>
     </motion.article>
   );
@@ -259,8 +263,7 @@ function EventGrid(){
         <Card key={`${event.title}-${idx}`}
           title={event.title}
           img={event.image}
-          description={`${event.dateLabel}${event.description ? ` · ${event.description}` : ""}`}
-          actions={<button className="btn btn--ghost" data-cursor="view-more">Details</button>} />
+          description={`${event.dateLabel}${event.description ? ` · ${event.description}` : ""}`} />
       ))}
     </div>
   );
