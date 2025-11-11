@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider, Link, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./brand.css";
@@ -181,7 +181,7 @@ function Stagger({children}){
   );
 }
 
-function Card({title,img,actions,i}){
+function Card({title,img,actions,description="Placeholder description for this module."}){
   return (
     <motion.article className="card"
       data-cursor="view-more"
@@ -189,7 +189,7 @@ function Card({title,img,actions,i}){
       <div className="card__media" style={{backgroundImage:`url(${img})`}} />
       <div className="card__body">
         <div className="card__title">{title}</div>
-        <p style={{color:"var(--cream-300)"}}>Placeholder description for this module.</p>
+        {description && <p style={{color:"var(--cream-300)"}}>{description}</p>}
         <div style={{display:"flex", gap:12, marginTop:8}}>{actions}</div>
       </div>
     </motion.article>
@@ -197,18 +197,111 @@ function Card({title,img,actions,i}){
 }
 
 function EventGrid(){
-  const sample = Array.from({length:4},(_,i)=>({
-    title:`Event Title ${i+1}`,
-    date:`Nov ${10+i}, 7:00 PM`,
-  }));
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  useEffect(()=>{
+    let cancelled = false;
+    async function loadEvents(){
+      try{
+        setLoading(true);
+        setError(null);
+        const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSMnG-3860OpM29dbE5ZscztMVHcJWcO3Ih_hvI7HSafoox2zlH6MMfJESkOdLKCEDw5XmTXSSaej2z/pub?output=csv");
+        if(!response.ok) throw new Error(`Sheets request failed (${response.status})`);
+        const text = await response.text();
+        const parsed = parseCsv(text);
+        if(!parsed.length) throw new Error("Sheet returned no rows");
+        const [rawHeader, ...rows] = parsed;
+        const header = rawHeader.map((cell)=>cell.trim().toLowerCase().replace(/\s+/g,"_"));
+        const normalized = rows.map((row)=>{
+          const entry = header.reduce((acc,key,idx)=>{
+            acc[key] = (row[idx] ?? "").trim();
+            return acc;
+          }, {});
+          const combinedDate = `${entry.date || ""} ${entry.time || ""}`.trim();
+          const dateObj = combinedDate ? new Date(combinedDate) : null;
+          return {
+            title: entry.title,
+            description: entry.description,
+            image: entry.image_link || "/placeholder-16x9.jpg",
+            dateObj,
+          };
+        }).filter((entry)=>entry.title);
+        const upcoming = normalized
+          .filter((entry)=>entry.dateObj instanceof Date && !isNaN(entry.dateObj) && entry.dateObj >= new Date())
+          .sort((a,b)=>a.dateObj - b.dateObj)
+          .slice(0,4)
+          .map((entry)=>({
+            ...entry,
+            dateLabel: entry.dateObj.toLocaleString("en-US", {month:"short", day:"numeric", hour:"numeric", minute:"2-digit"}),
+          }));
+        if(!cancelled){
+          setEvents(upcoming);
+          setLoading(false);
+        }
+      }catch(err){
+        if(!cancelled){
+          console.error(err);
+          setError(err);
+          setLoading(false);
+        }
+      }
+    }
+    loadEvents();
+    return ()=>{ cancelled = true; };
+  }, []);
+  if(loading) return <p style={{color:"var(--cream-200)"}}>Loading events…</p>;
+  if(error) return <p role="alert">Unable to load events. Please try again later.</p>;
+  if(!events.length) return <p>No upcoming events yet. Check back soon.</p>;
   return (
     <div className="grid cards">
-      {sample.map((e,i)=>(
-        <Card key={i} title={`${e.title}`} img="/placeholder-16x9.jpg"
+      {events.map((event,idx)=>(
+        <Card key={`${event.title}-${idx}`}
+          title={event.title}
+          img={event.image}
+          description={`${event.dateLabel}${event.description ? ` · ${event.description}` : ""}`}
           actions={<button className="btn btn--ghost" data-cursor="view-more">Details</button>} />
       ))}
     </div>
   );
+}
+
+function parseCsv(text){
+  const rows = [];
+  let current = [];
+  let cell = "";
+  let inQuotes = false;
+  for(let i=0;i<text.length;i++){
+    const char = text[i];
+    if(char === '"'){
+      if(inQuotes && text[i+1] === '"'){
+        cell += '"';
+        i++;
+      }else{
+        inQuotes = !inQuotes;
+      }
+      continue;
+    }
+    if(char === "," && !inQuotes){
+      current.push(cell);
+      cell = "";
+      continue;
+    }
+    if((char === "\n" || char === "\r") && !inQuotes){
+      if(char === "\r" && text[i+1] === "\n") i++;
+      current.push(cell);
+      rows.push(current);
+      current = [];
+      cell = "";
+      continue;
+    }
+    cell += char;
+  }
+  if(cell.length || current.length){
+    current.push(cell);
+    rows.push(current);
+  }
+  return rows.filter((row)=>row.some((value)=>value.trim().length));
 }
 
 function CTA({title, primary, secondary}){
