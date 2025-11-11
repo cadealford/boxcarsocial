@@ -190,18 +190,15 @@
 }
 .hero .overline{font-family:var(--nav-font); letter-spacing:.2em}
 
+.gallery-grid{
+  display:grid;
+  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
 .gallery{
   display:flex;
   gap:16px;
   align-items:center;
-}
-.gallery__viewport{
-  flex:1;
-  overflow:hidden;
-}
-.gallery__track{
-  display:grid;
-  gap:16px;
 }
 .gallery__item{
   border:1px solid #ffffff1f;

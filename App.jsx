@@ -9,6 +9,7 @@ const router = createBrowserRouter([
     { index: true, element: <Home /> },
     { path: "city/:slug", element: <City /> },
     { path: "menus", element: <MenuPage /> },
+    { path: "gallery", element: <GalleryPage /> },
     { path: "contact", element: <ContactPage /> },
     { path: "book-event", element: <BookEventPage /> },
   ]},
@@ -31,6 +32,7 @@ function Shell(){
           <div className="nav__links">
             <Link data-cursor="view-more" to="/">Home</Link>
             <Link data-cursor="view-more" to="/menus">Menus</Link>
+            <Link data-cursor="view-more" to="/gallery">Gallery</Link>
             <Link data-cursor="view-more" to="/contact">Contact</Link>
             <Link data-cursor="view-more" to="/book-event">Book an Event</Link>
           </div>
@@ -49,12 +51,10 @@ function Home(){
   return (
     <>
       <HeroVideo />
-      <GallerySection />
-      <SocialEmbed />
       <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
         <EventGrid />
       </Section>
-
+      <SocialEmbed />
       <LocationMap />
     </>
   );
@@ -258,46 +258,6 @@ function LocationMap(){
   );
 }
 
-function GallerySection(){
-  return (
-    <Section overline="Gallery" title="Inside the Parlor" bgWord="Gallery" className="section--gallery">
-      <Gallery />
-    </Section>
-  );
-}
-
-function Gallery(){
-  const slides = [
-    {id:1, img:"/placeholder-16x9.jpg", caption:"Parlor Seating"},
-    {id:2, img:"/placeholder-16x9.jpg", caption:"Signature Cocktails"},
-    {id:3, img:"/placeholder-16x9.jpg", caption:"Game Day Crowd"},
-    {id:4, img:"/placeholder-16x9.jpg", caption:"Chef’s Specials"},
-    {id:5, img:"/placeholder-16x9.jpg", caption:"Live Music Nights"},
-  ];
-  const visible = 3;
-  const [index, setIndex] = useState(0);
-  const advance = (delta) => {
-    setIndex((prev)=> (prev + delta + slides.length) % slides.length);
-  };
-  const view = Array.from({length:visible},(_,i)=> slides[(index + i) % slides.length]);
-  return (
-    <div className="gallery">
-      <button className="gallery__nav gallery__nav--prev" data-cursor="view-more" onClick={()=>advance(-1)} aria-label="Previous photos">‹</button>
-      <div className="gallery__viewport">
-        <div className="gallery__track" style={{gridTemplateColumns:`repeat(${visible}, minmax(0,1fr))`}}>
-          {view.map((item)=>(
-            <article key={item.id} className="gallery__item">
-              <div className="gallery__img" style={{backgroundImage:`url(${item.img})`}} />
-              <div className="gallery__caption">{item.caption}</div>
-            </article>
-          ))}
-        </div>
-      </div>
-      <button className="gallery__nav gallery__nav--next" data-cursor="view-more" onClick={()=>advance(1)} aria-label="Next photos">›</button>
-    </div>
-  );
-}
-
 function SocialEmbed(){
   return (
     <Section tight overline="Social" title="From The Feed" bgWord="Social">
@@ -399,6 +359,34 @@ function MenuPage(){
               <p>{menu.desc}</p>
               <a className="btn btn--ghost" href={menu.link}>View</a>
             </div>
+          ))}
+        </div>
+      </Section>
+    </>
+  );
+}
+
+function GalleryPage(){
+  const photos = Array.from({length:12},(_,i)=>({
+    id:i+1,
+    img:"/placeholder-16x9.jpg",
+    caption:`Moment ${i+1}`,
+  }));
+  return (
+    <>
+      <HeroVideo
+        overline="Gallery"
+        heading="Inside Boxcar Social"
+        sub="A glimpse at the people, plates, and parties that fill our nights."
+        videoSrc={null}
+      />
+      <Section tight title="Captured Moments" overline="Gallery" bgWord="Gallery">
+        <div className="gallery-grid">
+          {photos.map((photo)=>(
+            <article key={photo.id} className="gallery__item gallery__item--grid">
+              <div className="gallery__img" style={{backgroundImage:`url(${photo.img})`}} />
+              <div className="gallery__caption">{photo.caption}</div>
+            </article>
           ))}
         </div>
       </Section>
