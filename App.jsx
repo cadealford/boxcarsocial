@@ -8,7 +8,6 @@ const router = createBrowserRouter([
   { path: "/", element: <Shell />, children: [
     { index: true, element: <Home /> },
     { path: "city/:slug", element: <City /> },
-    { path: "menus", element: <MenuPage /> },
     { path: "gallery", element: <GalleryPage /> },
     { path: "contact", element: <ContactPage /> },
     { path: "book-event", element: <BookEventPage /> },
@@ -31,7 +30,6 @@ function Shell(){
           </Link>
           <div className="nav__links">
             <Link data-cursor="view-more" to="/">Home</Link>
-            <Link data-cursor="view-more" to="/menus">Menus</Link>
             <Link data-cursor="view-more" to="/gallery">Gallery</Link>
             <Link data-cursor="view-more" to="/contact">Contact</Link>
             <Link data-cursor="view-more" to="/book-event">Book an Event</Link>
@@ -426,36 +424,6 @@ function BookEventPage(){
             <h3>Packages</h3>
             <p>Catering · Beverage · A/V support · Game-day screens</p>
           </div>
-        </div>
-      </Section>
-    </>
-  );
-}
-
-function MenuPage(){
-  const menus = [
-    { title:"Taproom Menu", desc:"Elevated pub fare, rotating chef features.", link:"#"},
-    { title:"Parlor Menu", desc:"Cocktail-forward small plates upstairs.", link:"#"},
-    { title:"Brunch", desc:"Weekends 10am-2pm · Classics with a twist.", link:"#"},
-    { title:"Late Night", desc:"After 10pm · Shareables & comfort bites.", link:"#"},
-  ];
-  return (
-    <>
-      <HeroVideo
-        overline="Menus"
-        heading="Pouring flavor all day"
-        sub="Taproom staples, refined parlor plates, and weekend brunch favorites."
-        videoSrc={null}
-      />
-      <Section tight title="Choose Your Menu" overline="Food & Drink" bgWord="Menus" className="section--contact">
-        <div className="contact-grid">
-          {menus.map((menu)=>(
-            <div key={menu.title} className="contact-card" data-cursor="view-more">
-              <h3>{menu.title}</h3>
-              <p>{menu.desc}</p>
-              <a className="btn btn--ghost" href={menu.link}>View</a>
-            </div>
-          ))}
         </div>
       </Section>
     </>
