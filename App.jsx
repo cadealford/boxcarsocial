@@ -328,7 +328,7 @@ function LocationMap(){
       <div className="container location-container" style={{textAlign:"center"}}>
         <div className="location-content">
           <div className="overline">Visit Us</div>
-          <h3 style={{marginBottom:16}}>Boxcar Social · 216 N Edward Gary St, San Marcos, TX</h3>
+          <h3 style={{marginBottom:16}}>Boxcar Social · 116 S Edward Gary St, San Marcos, TX</h3>
           <div className={`map-frame ${mapActive?"is-active":""}`}
             onClick={()=>setMapActive(true)}
             onMouseLeave={()=>setMapActive(false)}
