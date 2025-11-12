@@ -225,7 +225,7 @@ function EventGrid(){
           return {
             title: entry.title,
             description: entry.description,
-            image: entry.image_link || "/placeholder-16x9.jpg",
+            image: entry.image_link || "/logo.png",
             dateObj,
           };
         }).filter((entry)=>entry.title);
