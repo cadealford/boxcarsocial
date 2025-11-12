@@ -14,6 +14,16 @@ const router = createBrowserRouter([
   ]},
 ]);
 
+const WEEKLY_HOURS = [
+  { day: "Mon", label: "Closed" },
+  { day: "Tue", label: "04:00 pm – 02:00 am" },
+  { day: "Wed", label: "04:00 pm – 02:00 am" },
+  { day: "Thu", label: "04:00 pm – 02:00 am" },
+  { day: "Fri", label: "04:00 pm – 02:00 am" },
+  { day: "Sat", label: "11:00 am – 02:00 am" },
+  { day: "Sun", label: "11:00 am – 02:00 am" },
+];
+
 export default function App(){ return <RouterProvider router={router} /> }
 
 function Shell(){
@@ -36,11 +46,36 @@ function Shell(){
           </div>
         </div>
       </nav>
+      <HoursLedger />
       <Outlet />
       <footer className="footer">
         <div className="container">© Placeholder 2025 · Built for demo</div>
       </footer>
     </>
+  );
+}
+
+function HoursLedger(){
+  const dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const todayKey = dayNames[new Date().getDay()];
+  return (
+    <div className="hours-ledger" aria-label="Weekly hours">
+      <div className="hours-ledger__card">
+        <div className="hours-ledger__title">Hours</div>
+        <div className="hours-ledger__list">
+        {WEEKLY_HOURS.map(({day, label})=>{
+          const isToday = day === todayKey;
+          const className = ["hours-ledger__item", isToday && "hours-ledger__item--active"].filter(Boolean).join(" ");
+          return (
+            <div key={day} className={className}>
+              <div className="hours-ledger__day">{day}</div>
+              <div className="hours-ledger__time">{label}</div>
+            </div>
+          );
+        })}
+      </div>
+      </div>
+    </div>
   );
 }
 

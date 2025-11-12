@@ -48,6 +48,64 @@
   width:auto;
   display:block;
 }
+.hours-ledger{
+  position:fixed;
+  top:50%;
+  right:clamp(12px, 2.6vw, 48px);
+  transform:translateY(-50%);
+  z-index:40;
+  pointer-events:none;
+}
+.hours-ledger__card{
+  pointer-events:auto;
+  background:transparent;
+  border:none;
+  border-radius:18px;
+  padding:14px 14px;
+  width:160px;
+  box-shadow:none;
+  font-family:var(--nav-font);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.hours-ledger__title{
+  font-size:.75rem;
+  letter-spacing:.28em;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+.hours-ledger__list{
+  display:grid;
+  gap:6px;
+}
+.hours-ledger__item{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding:6px 0 6px 10px;
+  border-left:2px solid transparent;
+  transition:border-color .2s var(--ease), color .2s var(--ease);
+}
+.hours-ledger__day{
+  font-weight:700;
+  font-size:.85rem;
+  color:var(--cream-100);
+}
+.hours-ledger__time{
+  font-size:.78rem;
+  color:var(--cream-300);
+  letter-spacing:.04em;
+}
+.hours-ledger__item--active{
+  border-left-color:var(--gold-500);
+  color:var(--gold-500);
+}
+.hours-ledger__item--active .hours-ledger__time{
+  color:var(--cream-100);
+}
+@media (max-width: 900px){
+  .hours-ledger{display:none;}
+}
 
 .card{
   background:linear-gradient(180deg,var(--green-600),#050505 60%);
