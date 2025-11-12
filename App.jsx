@@ -411,7 +411,7 @@ function BookEventPage(){
       />
       <Section tight title="Request an Experience" overline="Let’s Plan" bgWord="Events" className="section--contact">
         <div className="contact-grid">
-          <div className="contact-card contact-card--wide" data-cursor="view-more">
+          <div className="contact-card contact-card--wide contact-card--event" data-cursor="view-more">
             <h3>Event Inquiry</h3>
             <p>Send us details about your event, and our team will follow up within 24 hours.</p>
             <a className="btn" href="mailto:Info@boxcarsocialsmtx.com">Email Events</a>
