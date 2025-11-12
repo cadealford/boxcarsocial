@@ -416,14 +416,6 @@ function BookEventPage(){
             <p>Send us details about your event, and our team will follow up within 24 hours.</p>
             <a className="btn" href="mailto:Info@boxcarsocialsmtx.com">Email Events</a>
           </div>
-          <div className="contact-card" data-cursor="view-more">
-            <h3>Capacity</h3>
-            <p>Up to 150 guests · Indoor bar, Outdoor Patio or whole venue</p>
-          </div>
-          <div className="contact-card" data-cursor="view-more">
-            <h3>Packages</h3>
-            <p>Food · Beverage · A/V support · Game-day screens</p>
-          </div>
         </div>
       </Section>
     </>
