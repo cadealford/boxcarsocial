@@ -386,15 +386,15 @@ function ContactPage(){
         <div className="contact-grid">
           <div className="contact-card" data-cursor="view-more">
             <h3>Email</h3>
-            <p><a href="mailto:hello@boxcarsocial.com">hello@boxcarsocial.com</a></p>
+            <p><a href="mailto:hello@boxcarsocial.com">Info@boxcarsocialsmtx.com</a></p>
           </div>
           <div className="contact-card" data-cursor="view-more">
             <h3>Phone</h3>
-            <p><a href="tel:+15125551234">(512) 555-1234</a></p>
+            <p><a href="tel:+15122166015">(512) 216-6015</a></p>
           </div>
           <div className="contact-card" data-cursor="view-more">
             <h3>Visit</h3>
-            <p>216 N Edward Gary St<br/>San Marcos, TX 78666</p>
+            <p>116 S Edward Gary St<br/>San Marcos, TX 78666</p>
           </div>
         </div>
       </Section>
