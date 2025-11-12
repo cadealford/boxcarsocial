@@ -405,7 +405,7 @@ function BookEventPage(){
     <>
       <HeroVideo
         overline="Book An Event"
-        heading="From watch parties to weddings"
+        heading="From watch parties to wild nights out"
         sub="Tell us about your gathering and we’ll tailor the perfect experience."
         videoSrc={null}
       />
@@ -414,15 +414,15 @@ function BookEventPage(){
           <div className="contact-card contact-card--wide" data-cursor="view-more">
             <h3>Event Inquiry</h3>
             <p>Send us details about your event, and our team will follow up within 24 hours.</p>
-            <a className="btn" href="mailto:events@boxcarsocial.com">Email Events</a>
+            <a className="btn" href="mailto:Info@boxcarsocialsmtx.com">Email Events</a>
           </div>
           <div className="contact-card" data-cursor="view-more">
             <h3>Capacity</h3>
-            <p>Up to 150 guests · Taproom, Parlor, or whole venue</p>
+            <p>Up to 150 guests · Indoor bar, Outdoor Patio or whole venue</p>
           </div>
           <div className="contact-card" data-cursor="view-more">
             <h3>Packages</h3>
-            <p>Catering · Beverage · A/V support · Game-day screens</p>
+            <p>Food · Beverage · A/V support · Game-day screens</p>
           </div>
         </div>
       </Section>
