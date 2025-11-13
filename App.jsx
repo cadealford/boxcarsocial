@@ -24,6 +24,12 @@ const WEEKLY_HOURS = [
   { day: "Sun", label: "11:00 am – 02:00 am" },
 ];
 
+function refreshScrollSystems(){
+  if(typeof window === "undefined") return;
+  if(window.lenis?.resize) window.lenis.resize();
+  if(window.ScrollTrigger?.refresh) window.ScrollTrigger.refresh();
+}
+
 export default function App(){ return <RouterProvider router={router} /> }
 
 function Shell(){
@@ -388,6 +394,9 @@ function LocationMap(){
 }
 
 function SocialEmbed(){
+  useEffect(()=>{
+    refreshScrollSystems();
+  }, []);
   return (
     <Section tight overline="Social" title="From The Feed" bgWord="Social">
       <div className="embed-frame">
@@ -398,6 +407,7 @@ function SocialEmbed(){
           height="500"
           frameBorder="0"
           loading="lazy"
+          onLoad={refreshScrollSystems}
         />
       </div>
     </Section>
