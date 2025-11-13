@@ -243,6 +243,10 @@ function EventGrid(){
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const queueScrollRefresh = ()=>{
+    if(typeof window === "undefined") return;
+    window.requestAnimationFrame(()=>refreshScrollSystems());
+  };
   useEffect(()=>{
     let cancelled = false;
     async function loadEvents(){
@@ -281,12 +285,14 @@ function EventGrid(){
         if(!cancelled){
           setEvents(upcoming);
           setLoading(false);
+          queueScrollRefresh();
         }
       }catch(err){
         if(!cancelled){
           console.error(err);
           setError(err);
           setLoading(false);
+          queueScrollRefresh();
         }
       }
     }
