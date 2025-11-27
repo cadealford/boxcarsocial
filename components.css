@@ -441,6 +441,19 @@
   padding:12px 28px;
   box-shadow:0 8px 24px rgba(0,0,0,.6);
 }
+.form-embed{
+  width:100%;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #ffffff24;
+  background:rgba(0,0,0,.2);
+}
+.form-embed iframe{
+  display:block;
+  width:100%;
+  min-height:720px;
+  border:0;
+}
 .map-frame{
   border-radius:16px;
   border:1px solid #ffffff24;

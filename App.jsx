@@ -53,6 +53,8 @@ const GALLERY_IMAGES = [
   "moment_8419.jpg",
 ];
 
+const GOOGLE_FORM_SRC = "https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true";
+
 function refreshScrollSystems(){
   if(typeof window === "undefined") return;
   if(window.lenis?.resize) window.lenis.resize();
@@ -494,7 +496,18 @@ function BookEventPage(){
           <div className="contact-card contact-card--wide contact-card--event" data-cursor="view-more">
             <h3>Event Inquiry</h3>
             <p>Send us details about your event, and our team will follow up within 24 hours.</p>
-            <a className="btn" href="mailto:Info@boxcarsocialsmtx.com">Email Events</a>
+            <div className="form-embed">
+              <iframe
+                src={GOOGLE_FORM_SRC}
+                title="Event Inquiry Form"
+                frameBorder="0"
+                marginHeight="0"
+                marginWidth="0"
+                allowFullScreen
+              >
+                Loading…
+              </iframe>
+            </div>
           </div>
         </div>
       </Section>
@@ -506,7 +519,6 @@ function GalleryPage(){
   const photos = GALLERY_IMAGES.map((file, i) => ({
     id: i + 1,
     img: `/${file}`,
-    caption: file.replace(/^moment_/, "Moment ").replace(/\.[^.]+$/, ""),
   }));
   return (
     <>
@@ -521,7 +533,6 @@ function GalleryPage(){
           {photos.map((photo)=>(
             <article key={photo.id} className="gallery__item gallery__item--grid">
               <div className="gallery__img" style={{backgroundImage:`url(${photo.img})`}} />
-              <div className="gallery__caption">{photo.caption}</div>
             </article>
           ))}
         </div>
