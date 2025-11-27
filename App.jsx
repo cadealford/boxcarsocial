@@ -24,6 +24,35 @@ const WEEKLY_HOURS = [
   { day: "Sun", label: "11:00 am – 02:00 am" },
 ];
 
+const GALLERY_IMAGES = [
+  "moment_8175.jpg",
+  "moment_8191.JPG",
+  "moment_8195.JPG",
+  "moment_8202.jpg",
+  "moment_8211.JPG",
+  "moment_8224.jpg",
+  "moment_8231.JPG",
+  "moment_8238.JPG",
+  "moment_8243.jpg",
+  "moment_8247.jpg",
+  "moment_8252.jpg",
+  "moment_8257.jpg",
+  "moment_8263.JPG",
+  "moment_8266.jpg",
+  "moment_8270.jpg",
+  "moment_8292.jpg",
+  "moment_8304.JPG",
+  "moment_8316.jpg",
+  "moment_8324.jpg",
+  "moment_8338.jpg",
+  "moment_8343.jpg",
+  "moment_8358.jpg",
+  "moment_8371.jpg",
+  "moment_8376.jpg",
+  "moment_8379.JPG",
+  "moment_8419.jpg",
+];
+
 function refreshScrollSystems(){
   if(typeof window === "undefined") return;
   if(window.lenis?.resize) window.lenis.resize();
@@ -474,10 +503,10 @@ function BookEventPage(){
 }
 
 function GalleryPage(){
-  const photos = Array.from({length:12},(_,i)=>({
-    id:i+1,
-    img:"/placeholder-16x9.jpg",
-    caption:`Moment ${i+1}`,
+  const photos = GALLERY_IMAGES.map((file, i) => ({
+    id: i + 1,
+    img: `/${file}`,
+    caption: file.replace(/^moment_/, "Moment ").replace(/\.[^.]+$/, ""),
   }));
   return (
     <>
