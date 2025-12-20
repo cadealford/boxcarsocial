@@ -86,7 +86,7 @@ function Shell(){
       <HoursLedger />
       <Outlet />
       <footer className="footer">
-        <div className="container">© Placeholder 2025 · Built for demo</div>
+        <div className="container">© Boxcar Social 2025</div>
       </footer>
     </>
   );
