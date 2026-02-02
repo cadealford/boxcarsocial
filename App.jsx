@@ -390,11 +390,34 @@ function Stagger({children}){
 }
 
 function Card({title,img,actions=null,description="Placeholder description for this module."}){
+  const imageSources = Array.isArray(img?.sources)
+    ? img.sources
+    : (typeof img === "string" ? [img] : [img?.src].filter(Boolean));
+  const sources = imageSources.length ? imageSources : ["/logo.png"];
+  const [sourceIndex, setSourceIndex] = useState(0);
+  const cardImage = sources[sourceIndex] || "/logo.png";
+  useEffect(()=>{
+    setSourceIndex(0);
+  }, [img]);
+  const handleImageError = ()=>{
+    setSourceIndex((index)=>{
+      const nextIndex = index + 1;
+      return nextIndex < sources.length ? nextIndex : index;
+    });
+  };
   return (
     <motion.article className="card"
       data-cursor="view-more"
       whileHover={{scale:1.02}} transition={{type:"spring", stiffness:300, damping:20}}>
-      <div className="card__media" style={{backgroundImage:`url(${img})`}} />
+      <div className="card__media">
+        <img
+          src={cardImage}
+          alt=""
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={handleImageError}
+        />
+      </div>
       <div className="card__body">
         <div className="card__title">{title}</div>
         {description && <p style={{color:"var(--cream-300)"}}>{description}</p>}
@@ -439,7 +462,7 @@ const response = await fetch(`https://docs.google.com/spreadsheets/d/e/2PACX-1vS
           return {
             title: entry.title,
             description: entry.description,
-            image: entry.image_link || "/logo.png",
+            image: normalizeImageLink(entry.image_link),
             dateObj,
           };
         }).filter((entry)=>entry.title);
@@ -481,6 +504,34 @@ const response = await fetch(`https://docs.google.com/spreadsheets/d/e/2PACX-1vS
       ))}
     </div>
   );
+}
+
+function normalizeImageLink(link){
+  const fallback = "/logo.png";
+  if(!link || typeof link !== "string") return fallback;
+  const trimmed = link.trim();
+  if(!trimmed) return fallback;
+  if(/^https?:\/\//i.test(trimmed)) return trimmed;
+  if(trimmed.startsWith("/")) return trimmed;
+  if(/\.(png|jpe?g|webp|gif|svg)$/i.test(trimmed)) return trimmed;
+  if(trimmed.startsWith("lh3.googleusercontent.com/")){
+    return `https://${trimmed}`;
+  }
+  const driveMatch = trimmed.match(/(?:drive\.google\.com\/file\/d\/|drive\.google\.com\/open\?id=)([a-zA-Z0-9_-]+)/);
+  const id = driveMatch && driveMatch[1] ? driveMatch[1] : trimmed;
+  if(id){
+    if(typeof import.meta !== "undefined" && import.meta.env?.DEV){
+      return `/drive-image/${id}`;
+    }
+    return {
+      sources: [
+        `https://drive.google.com/uc?export=view&id=${id}`,
+        `https://drive.google.com/thumbnail?id=${id}&sz=w1200`,
+        `https://lh3.googleusercontent.com/d/${id}`,
+      ],
+    };
+  }
+  return fallback;
 }
 
 function parseCsv(text){

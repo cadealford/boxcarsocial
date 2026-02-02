@@ -141,7 +141,19 @@
   transition:transform .16s var(--ease), box-shadow .16s var(--ease), border-color .16s var(--ease);
 }
 .card:hover{transform:scale(1.02); box-shadow:var(--shadow-2); border-color:#ffffff24}
-.card__media{aspect-ratio:16/9; background:#050505 url('/placeholder-16x9.jpg') center/cover no-repeat}
+.card__media{
+  position:relative;
+  aspect-ratio:16/9;
+  background:#050505;
+  overflow:hidden;
+}
+.card__media img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 .card__body{padding:20px}
 .card__title{font-family:"EB Garamond"; font-weight:600; font-size:1.4rem}
 
