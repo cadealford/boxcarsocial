@@ -284,8 +284,8 @@ function EventGrid(){
       try{
         setLoading(true);
         setError(null);
-        const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSMnG-3860OpM29dbE5ZscztMVHcJWcO3Ih_hvI7HSafoox2zlH6MMfJESkOdLKCEDw5XmTXSSaej2z/pub?output=csv");
-        if(!response.ok) throw new Error(`Sheets request failed (${response.status})`);
+const timestamp = new Date().getTime();
+const response = await fetch(`https://docs.google.com/spreadsheets/d/e/2PACX-1vSMnG-3860OpM29dbE5ZscztMVHcJWcO3Ih_hvI7HSafoox2zlH6MMfJESkOdLKCEDw5XmTXSSaej2z/pub?output=csv&_=${timestamp}`);        if(!response.ok) throw new Error(`Sheets request failed (${response.status})`);
         const text = await response.text();
         const parsed = parseCsv(text);
         if(!parsed.length) throw new Error("Sheet returned no rows");
