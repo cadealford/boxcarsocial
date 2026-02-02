@@ -9,6 +9,7 @@ const router = createBrowserRouter([
     { index: true, element: <Home /> },
     { path: "city/:slug", element: <City /> },
     { path: "gallery", element: <GalleryPage /> },
+    { path: "food", element: <FoodPage /> },
     { path: "contact", element: <ContactPage /> },
     { path: "book-event", element: <BookEventPage /> },
   ]},
@@ -53,6 +54,142 @@ const GALLERY_IMAGES = [
   "moment_8419.jpg",
 ];
 
+const FOOD_ITEMS = [
+  {
+    name: "Abuela Taco",
+    images: [
+      "/food/Copy of AbuelaTaco_Granny_sTacos-2.jpg",
+      "/food/Copy of AbuelaTaco_Granny_sTacos-3.jpg",
+      "/food/Copy of AbuelaTaco_Granny_sTacos-4.jpg",
+      "/food/Copy of AbuelaTaco_Granny_sTacos-5.jpg",
+    ],
+  },
+  {
+    name: "Al Pastor Quesadilla",
+    images: ["/food/Copy of AlPastorQuesadilla_Granny_sTacos-3.jpg"],
+  },
+  {
+    name: "Al Pastor Taco",
+    images: ["/food/Copy of AlPastorTaco_Granny_sTacos-5.jpg"],
+  },
+  {
+    name: "Bacon, Egg, And Cheese Taco",
+    images: ["/food/Copy of Bacon,Egg,AndCheeseTaco_Granny_sTacos-7.jpg"],
+  },
+  {
+    name: "Bean, Cheese, And Potato Taco",
+    images: ["/food/Copy of Bean,Cheese,AndPotatoTaco_Granny_sTacos-2.jpg"],
+  },
+  {
+    name: "Birria Conesuelo",
+    images: ["/food/Copy of BirriaConesuelo_Granny_sTacos.jpg"],
+  },
+  {
+    name: "Capachano Torta",
+    images: [
+      "/food/Copy of CapachanoTorta_Granny_sTacos-6.jpg",
+      "/food/Copy of CapachanoTorta_Granny_sTacos-8.jpg",
+    ],
+  },
+  {
+    name: "Capachanu",
+    images: [
+      "/food/Copy of Capachanu_Granny_sTacos-2.jpg",
+      "/food/Copy of Capachanu_Granny_sTacos-3.jpg",
+    ],
+  },
+  {
+    name: "Chicken Taco",
+    images: [
+      "/food/Copy of ChickenTaco_Granny_sTacos-2.jpg",
+      "/food/Copy of ChickenTaco_Granny_sTacos-4.jpg",
+    ],
+  },
+  {
+    name: "Chips And Guacamole",
+    images: ["/food/Copy of ChipsAndGuacamole_Granny_sTacos-3.jpg"],
+  },
+  {
+    name: "Chorizo, Egg, And Cheese Taco",
+    images: ["/food/Copy of Chorizo,Egg,AndCheeseTaco_Granny_sTacos-4.jpg"],
+  },
+  {
+    name: "El Ambre Taco With Chicken",
+    images: ["/food/Copy of ElAmbreTacoWithChicken_Granny_sTacos.jpg"],
+  },
+  {
+    name: "Fry Nachos",
+    images: ["/food/Copy of FryNachos_Granny_sTacos-3.jpg"],
+  },
+  {
+    name: "Hayley Bowl",
+    images: ["/food/Copy of HayleyBowl_Granny_sTacos-3.jpg"],
+  },
+  {
+    name: "La Ceringa",
+    images: ["/food/Copy of LaCeringa_Granny_sTacos-5.jpg"],
+  },
+  {
+    name: "Migas Tacos",
+    images: [
+      "/food/Copy of MigasTacos_Granny_sTacos-10.jpg",
+      "/food/Copy of MigasTacos_Granny_sTacos-5.jpg",
+    ],
+  },
+  {
+    name: "Mole Chilaquiles",
+    images: ["/food/Copy of MoleChilaquiles_Granny_sTacos-3.jpg"],
+  },
+  {
+    name: "Multiple Items",
+    images: [
+      "/food/Copy of MultipleItems_Granny_sTacos-15.jpg",
+      "/food/Copy of MultipleItems_Granny_sTacos-17.jpg",
+      "/food/Copy of MultipleItems_Granny_sTacos-26.jpg",
+      "/food/Copy of MultipleItems_Granny_sTacos-3.jpg",
+      "/food/Copy of MultipleItems_Granny_sTacos-32.jpg",
+      "/food/Copy of MultipleItems_Granny_sTacos-38.jpg",
+      "/food/Copy of MultipleItems_Granny_sTacos-7.jpg",
+    ],
+  },
+  {
+    name: "Potato, Egg, And Cheese Taco",
+    images: ["/food/Copy of Potato,Egg,AndCheeseTaco_Granny_sTacos-3.jpg"],
+  },
+  {
+    name: "Ranchero Taco",
+    images: ["/food/Copy of RancheroTaco_Granny_sTacos-6.jpg"],
+  },
+  {
+    name: "Rico Taco",
+    images: ["/food/Copy of RicoTaco_Granny_sTacos-10.jpg"],
+  },
+  {
+    name: "Rojo Chilaquiles",
+    images: ["/food/Copy of RojoChilaquiles_Granny_sTacos-5.jpg"],
+  },
+  {
+    name: "Shrimp Taco",
+    images: ["/food/Copy of ShrimpTaco_Granny_sTacos.jpg"],
+  },
+  {
+    name: "Steak Burrito",
+    images: ["/food/Copy of SteakBurrito_Granny_sTacos-3.jpg"],
+  },
+  {
+    name: "Steak Nachos",
+    images: ["/food/Copy of SteakNachos_Granny_sTacos-3.jpg"],
+  },
+  {
+    name: "Veggie Taco With Egg",
+    images: ["/food/Copy of VeggieTacoWithEgg_Granny_sTacos-2.jpg"],
+  },
+  {
+    name: "Verde Chilaquiles",
+    images: ["/food/Copy of VerdeChilaquiles_Granny_sTacos-3.jpg"],
+  },
+];
+
 const GOOGLE_FORM_SRC = "https://docs.google.com/forms/d/e/1FAIpQLScjaI22HzjhwE_LzqbmdIXQx3NoptZ1fnEzgRLBkh0P5W4EpQ/viewform?embedded=true";
 
 function refreshScrollSystems(){
@@ -78,6 +215,7 @@ function Shell(){
           <div className="nav__links">
             <Link data-cursor="view-more" to="/">Home</Link>
             <Link data-cursor="view-more" to="/gallery">Gallery</Link>
+            <Link data-cursor="view-more" to="/food">Food</Link>
             <Link data-cursor="view-more" to="/contact">Contact</Link>
             <Link data-cursor="view-more" to="/book-event">Book an Event</Link>
           </div>
@@ -284,8 +422,8 @@ function EventGrid(){
       try{
         setLoading(true);
         setError(null);
-        const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vSMnG-3860OpM29dbE5ZscztMVHcJWcO3Ih_hvI7HSafoox2zlH6MMfJESkOdLKCEDw5XmTXSSaej2z/pub?output=csv");
-        if(!response.ok) throw new Error(`Sheets request failed (${response.status})`);
+const timestamp = new Date().getTime();
+const response = await fetch(`https://docs.google.com/spreadsheets/d/e/2PACX-1vSMnG-3860OpM29dbE5ZscztMVHcJWcO3Ih_hvI7HSafoox2zlH6MMfJESkOdLKCEDw5XmTXSSaej2z/pub?output=csv&_=${timestamp}`);        if(!response.ok) throw new Error(`Sheets request failed (${response.status})`);
         const text = await response.text();
         const parsed = parseCsv(text);
         if(!parsed.length) throw new Error("Sheet returned no rows");
@@ -534,6 +672,80 @@ function GalleryPage(){
             <article key={photo.id} className="gallery__item gallery__item--grid">
               <div className="gallery__img" style={{backgroundImage:`url(${photo.img})`}} />
             </article>
+          ))}
+        </div>
+      </Section>
+    </>
+  );
+}
+
+function FoodCarousel({item}){
+  const [activeIndex, setActiveIndex] = useState(0);
+  const total = item.images.length;
+  const activeImage = item.images[activeIndex];
+  const goPrev = ()=> setActiveIndex((index)=>(index - 1 + total) % total);
+  const goNext = ()=> setActiveIndex((index)=>(index + 1) % total);
+
+  return (
+    <article className="food-card">
+      <div className="food-card__media">
+        <div className="food-card__image" style={{backgroundImage:`url("${activeImage}")`}} />
+        {total > 1 && (
+          <div className="carousel__controls">
+            <button
+              type="button"
+              className="carousel__nav"
+              onClick={goPrev}
+              aria-label={`Previous ${item.name} photo`}
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              className="carousel__nav"
+              onClick={goNext}
+              aria-label={`Next ${item.name} photo`}
+            >
+              ›
+            </button>
+          </div>
+        )}
+      </div>
+      <div className="food-card__body">
+        <div className="food-card__title">{item.name}</div>
+        {item.description && <p className="food-card__desc">{item.description}</p>}
+        {total > 1 && (
+          <div className="carousel__dots" role="tablist" aria-label={`${item.name} photos`}>
+            {item.images.map((_, index)=>(
+              <button
+                key={`${item.name}-${index}`}
+                type="button"
+                className={`carousel__dot ${index === activeIndex ? "is-active" : ""}`}
+                onClick={()=>setActiveIndex(index)}
+                aria-label={`Show ${item.name} photo ${index + 1} of ${total}`}
+                aria-current={index === activeIndex ? "true" : undefined}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function FoodPage(){
+  return (
+    <>
+      <HeroVideo
+        overline="Food"
+        heading="Plates Worth Lingering Over"
+        sub="Carousel through the flavors that keep the taproom buzzing."
+        videoSrc={null}
+      />
+      <Section tight title="Food Highlights" overline="Kitchen" bgWord="Food" className="section--food">
+        <div className="food-grid">
+          {FOOD_ITEMS.map((item)=>(
+            <FoodCarousel key={item.name} item={item} />
           ))}
         </div>
       </Section>
