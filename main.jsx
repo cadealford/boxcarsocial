@@ -25,6 +25,17 @@ if (typeof window !== "undefined") {
     }
   };
 
+  const trackPageView = () => {
+    const endpoint = "https://script.google.com/macros/s/AKfycbydHz1gz8zphxtOcc3u7v7M4TViivy-RtpuP70g0TDQtDLLRooItLKv7IUFKeyvHvjgOw/exec";
+    const params = new URLSearchParams({
+      key: "fjIzrnNOvly2XjPRfiUFACs5OggLaPgr",
+      path: window.location.pathname,
+      ua: navigator.userAgent,
+      ref: document.referrer || "",
+    });
+    fetch(`${endpoint}?${params.toString()}`).catch(() => {});
+  };
+
   if (document.readyState === "complete") {
     requestAnimationFrame(bootInteractions);
   } else {
@@ -34,4 +45,6 @@ if (typeof window !== "undefined") {
       { once: true }
     );
   }
+
+  trackPageView();
 }
