@@ -10,8 +10,10 @@ const router = createBrowserRouter([
     { path: "city/:slug", element: <City /> },
     { path: "gallery", element: <GalleryPage /> },
     { path: "food", element: <FoodPage /> },
+    { path: "events", element: <EventsPage /> },
     { path: "contact", element: <ContactPage /> },
     { path: "book-event", element: <BookEventPage /> },
+    { path: "live-performance-inquiry", element: <LivePerformanceInquiryPage /> },
   ]},
 ]);
 
@@ -216,8 +218,10 @@ function Shell(){
             <Link data-cursor="view-more" to="/">Home</Link>
             <Link data-cursor="view-more" to="/gallery">Gallery</Link>
             <Link data-cursor="view-more" to="/food">Food</Link>
+            <Link data-cursor="view-more" to="/events">Events</Link>
             <Link data-cursor="view-more" to="/contact">Contact</Link>
             <Link data-cursor="view-more" to="/book-event">Book an Event</Link>
+            <Link data-cursor="view-more" to="/live-performance-inquiry">Live Performance Inquiry</Link>
           </div>
         </div>
       </nav>
@@ -259,9 +263,6 @@ function Home(){
   return (
     <>
       <HeroVideo />
-      <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
-        <EventGrid />
-      </Section>
       <SocialEmbed />
       <LocationMap />
     </>
@@ -699,6 +700,55 @@ function BookEventPage(){
             </div>
           </div>
         </div>
+      </Section>
+    </>
+  );
+}
+
+function LivePerformanceInquiryPage(){
+  return (
+    <>
+      <HeroVideo
+        overline="Live Performance Inquiry"
+        heading="Bring your show to life"
+        sub="Tell us about your performance and we'll help make it unforgettable."
+        videoSrc={null}
+      />
+      <Section tight title="Performance Inquiry" overline="Let’s Create" bgWord="Performance" className="section--contact">
+        <div className="contact-grid">
+          <div className="contact-card contact-card--wide contact-card--event" data-cursor="view-more">
+            <h3>Live Performance Inquiry</h3>
+            <p>Send us details about your live performance, and our team will follow up within 24 hours.</p>
+            <div className="form-embed">
+              <iframe
+                src={GOOGLE_FORM_SRC}
+                title="Live Performance Inquiry Form"
+                frameBorder="0"
+                marginHeight="0"
+                marginWidth="0"
+                allowFullScreen
+              >
+                Loading…
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+}
+
+function EventsPage(){
+  return (
+    <>
+      <HeroVideo
+        overline="Events"
+        heading="What’s On?"
+        sub="Check out our upcoming events and special happenings."
+        videoSrc={null}
+      />
+      <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
+        <EventGrid />
       </Section>
     </>
   );
