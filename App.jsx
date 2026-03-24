@@ -192,7 +192,8 @@ const FOOD_ITEMS = [
   },
 ];
 
-const GOOGLE_FORM_SRC = "https://docs.google.com/forms/d/e/1FAIpQLScjaI22HzjhwE_LzqbmdIXQx3NoptZ1fnEzgRLBkh0P5W4EpQ/viewform?embedded=true";
+const BOOK_EVENT_FORM_SRC = "https://docs.google.com/forms/d/e/1FAIpQLSfFe2l0ilVtMkPbtqEbG7ZifHcNqLzezpNLTSfHt8CJdkiStQ/viewform?usp=header";
+const LIVE_PERFORMANCE_FORM_SRC = "https://docs.google.com/forms/d/e/1FAIpQLScjaI22HzjhwE_LzqbmdIXQx3NoptZ1fnEzgRLBkh0P5W4EpQ/viewform?embedded=true";
 
 function refreshScrollSystems(){
   if(typeof window === "undefined") return;
@@ -688,7 +689,7 @@ function BookEventPage(){
             <p>Send us details about your event, and our team will follow up within 24 hours.</p>
             <div className="form-embed">
               <iframe
-                src={GOOGLE_FORM_SRC}
+                src={BOOK_EVENT_FORM_SRC}
                 title="Event Inquiry Form"
                 frameBorder="0"
                 marginHeight="0"
@@ -721,7 +722,7 @@ function LivePerformanceInquiryPage(){
             <p>Send us details about your live performance, and our team will follow up within 24 hours.</p>
             <div className="form-embed">
               <iframe
-                src={GOOGLE_FORM_SRC}
+                src={LIVE_PERFORMANCE_FORM_SRC}
                 title="Live Performance Inquiry Form"
                 frameBorder="0"
                 marginHeight="0"
