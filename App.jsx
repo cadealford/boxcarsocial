@@ -10,8 +10,10 @@ const router = createBrowserRouter([
     { path: "city/:slug", element: <City /> },
     { path: "gallery", element: <GalleryPage /> },
     { path: "food", element: <FoodPage /> },
+    { path: "events", element: <EventsPage /> },
     { path: "contact", element: <ContactPage /> },
     { path: "book-event", element: <BookEventPage /> },
+    { path: "live-performance-inquiry", element: <LivePerformanceInquiryPage /> },
   ]},
 ]);
 
@@ -190,7 +192,8 @@ const FOOD_ITEMS = [
   },
 ];
 
-const GOOGLE_FORM_SRC = "https://docs.google.com/forms/d/e/1FAIpQLScjaI22HzjhwE_LzqbmdIXQx3NoptZ1fnEzgRLBkh0P5W4EpQ/viewform?embedded=true";
+const BOOK_EVENT_FORM_SRC = "https://docs.google.com/forms/d/e/1FAIpQLSfFe2l0ilVtMkPbtqEbG7ZifHcNqLzezpNLTSfHt8CJdkiStQ/viewform?usp=header";
+const LIVE_PERFORMANCE_FORM_SRC = "https://docs.google.com/forms/d/e/1FAIpQLScjaI22HzjhwE_LzqbmdIXQx3NoptZ1fnEzgRLBkh0P5W4EpQ/viewform?embedded=true";
 
 function refreshScrollSystems(){
   if(typeof window === "undefined") return;
@@ -216,8 +219,10 @@ function Shell(){
             <Link data-cursor="view-more" to="/">Home</Link>
             <Link data-cursor="view-more" to="/gallery">Gallery</Link>
             <Link data-cursor="view-more" to="/food">Food</Link>
+            <Link data-cursor="view-more" to="/events">Events</Link>
             <Link data-cursor="view-more" to="/contact">Contact</Link>
             <Link data-cursor="view-more" to="/book-event">Book an Event</Link>
+            <Link data-cursor="view-more" to="/live-performance-inquiry">Live Performance Inquiry</Link>
           </div>
         </div>
       </nav>
@@ -259,9 +264,6 @@ function Home(){
   return (
     <>
       <HeroVideo />
-      <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
-        <EventGrid />
-      </Section>
       <SocialEmbed />
       <LocationMap />
     </>
@@ -277,7 +279,6 @@ function City(){
         overline="Visit Our Cities"
         heading="City Name, ST"
         sub="Traditional ideas, contemporary execution."
-        videoSrc={null}
       />
       <Section
         overline="Opening Times"
@@ -649,7 +650,6 @@ function ContactPage(){
         overline="Get In Touch"
         heading="We’re here for every question"
         sub="Reach out about reservations, events, or anything else."
-        videoSrc={null}
       />
       <Section tight title="Contact Us" overline="Say Hello" bgWord="Contact" className="section--contact">
         <div className="contact-grid">
@@ -678,7 +678,6 @@ function BookEventPage(){
         overline="Book An Event"
         heading="From watch parties to wild nights out"
         sub="Tell us about your gathering and we’ll tailor the perfect experience."
-        videoSrc={null}
       />
       <Section tight title="Request an Experience" overline="Let’s Plan" bgWord="Events" className="section--contact">
         <div className="contact-grid">
@@ -687,7 +686,7 @@ function BookEventPage(){
             <p>Send us details about your event, and our team will follow up within 24 hours.</p>
             <div className="form-embed">
               <iframe
-                src={GOOGLE_FORM_SRC}
+                src={BOOK_EVENT_FORM_SRC}
                 title="Event Inquiry Form"
                 frameBorder="0"
                 marginHeight="0"
@@ -704,6 +703,53 @@ function BookEventPage(){
   );
 }
 
+function LivePerformanceInquiryPage(){
+  return (
+    <>
+      <HeroVideo
+        overline="Live Performance Inquiry"
+        heading="Bring your show to life"
+        sub="Tell us about your performance and we'll help make it unforgettable."
+      />
+      <Section tight title="Performance Inquiry" overline="Let’s Create" bgWord="Performance" className="section--contact">
+        <div className="contact-grid">
+          <div className="contact-card contact-card--wide contact-card--event" data-cursor="view-more">
+            <h3>Live Performance Inquiry</h3>
+            <p>Send us details about your live performance, and our team will follow up within 24 hours.</p>
+            <div className="form-embed">
+              <iframe
+                src={LIVE_PERFORMANCE_FORM_SRC}
+                title="Live Performance Inquiry Form"
+                frameBorder="0"
+                marginHeight="0"
+                marginWidth="0"
+                allowFullScreen
+              >
+                Loading…
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </Section>
+    </>
+  );
+}
+
+function EventsPage(){
+  return (
+    <>
+      <HeroVideo
+        overline="Events"
+        heading="What’s On?"
+        sub="Check out our upcoming events and special happenings."
+      />
+      <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
+        <EventGrid />
+      </Section>
+    </>
+  );
+}
+
 function GalleryPage(){
   const photos = GALLERY_IMAGES.map((file, i) => ({
     id: i + 1,
@@ -715,7 +761,6 @@ function GalleryPage(){
         overline="Gallery"
         heading="Inside Boxcar Social"
         sub="A glimpse at the people, plates, and parties that fill our nights."
-        videoSrc={null}
       />
       <Section tight title="Captured Moments" overline="Gallery" bgWord="Gallery">
         <div className="gallery-grid">
@@ -791,7 +836,6 @@ function FoodPage(){
         overline="Food"
         heading="Plates Worth Lingering Over"
         sub="Carousel through the flavors that keep the taproom buzzing."
-        videoSrc={null}
       />
       <Section tight title="Food Highlights" overline="Kitchen" bgWord="Food" className="section--food">
         <div className="food-grid">
