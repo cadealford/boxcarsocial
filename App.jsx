@@ -279,7 +279,6 @@ function City(){
         overline="Visit Our Cities"
         heading="City Name, ST"
         sub="Traditional ideas, contemporary execution."
-        videoSrc={null}
       />
       <Section
         overline="Opening Times"
@@ -651,7 +650,6 @@ function ContactPage(){
         overline="Get In Touch"
         heading="We’re here for every question"
         sub="Reach out about reservations, events, or anything else."
-        videoSrc={null}
       />
       <Section tight title="Contact Us" overline="Say Hello" bgWord="Contact" className="section--contact">
         <div className="contact-grid">
@@ -680,7 +678,6 @@ function BookEventPage(){
         overline="Book An Event"
         heading="From watch parties to wild nights out"
         sub="Tell us about your gathering and we’ll tailor the perfect experience."
-        videoSrc={null}
       />
       <Section tight title="Request an Experience" overline="Let’s Plan" bgWord="Events" className="section--contact">
         <div className="contact-grid">
@@ -713,7 +710,6 @@ function LivePerformanceInquiryPage(){
         overline="Live Performance Inquiry"
         heading="Bring your show to life"
         sub="Tell us about your performance and we'll help make it unforgettable."
-        videoSrc={null}
       />
       <Section tight title="Performance Inquiry" overline="Let’s Create" bgWord="Performance" className="section--contact">
         <div className="contact-grid">
@@ -746,7 +742,6 @@ function EventsPage(){
         overline="Events"
         heading="What’s On?"
         sub="Check out our upcoming events and special happenings."
-        videoSrc={null}
       />
       <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
         <EventGrid />
@@ -766,7 +761,6 @@ function GalleryPage(){
         overline="Gallery"
         heading="Inside Boxcar Social"
         sub="A glimpse at the people, plates, and parties that fill our nights."
-        videoSrc={null}
       />
       <Section tight title="Captured Moments" overline="Gallery" bgWord="Gallery">
         <div className="gallery-grid">
@@ -842,7 +836,6 @@ function FoodPage(){
         overline="Food"
         heading="Plates Worth Lingering Over"
         sub="Carousel through the flavors that keep the taproom buzzing."
-        videoSrc={null}
       />
       <Section tight title="Food Highlights" overline="Kitchen" bgWord="Food" className="section--food">
         <div className="food-grid">
