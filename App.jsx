@@ -8,8 +8,8 @@ const router = createBrowserRouter([
   { path: "/", element: <Shell />, children: [
     { index: true, element: <Home /> },
     { path: "city/:slug", element: <City /> },
-    { path: "gallery", element: <GalleryPage /> },
-    { path: "food", element: <FoodPage /> },
+    { path: "gallery", element: <GalleryFoodPage /> },
+    { path: "food", element: <GalleryFoodPage /> },
     { path: "events", element: <EventsPage /> },
     { path: "contact", element: <ContactPage /> },
     { path: "book-event", element: <BookEventPage /> },
@@ -217,11 +217,8 @@ function Shell(){
           </Link>
           <div className="nav__links">
             <Link data-cursor="view-more" to="/">Home</Link>
-            <Link data-cursor="view-more" to="/gallery">Gallery</Link>
-            <Link data-cursor="view-more" to="/food">Food</Link>
+            <Link data-cursor="view-more" to="/gallery">Gallery + Food</Link>
             <Link data-cursor="view-more" to="/events">Events</Link>
-            <Link data-cursor="view-more" to="/contact">Contact</Link>
-            <Link data-cursor="view-more" to="/book-event">Book an Event</Link>
             <Link data-cursor="view-more" to="/live-performance-inquiry">Live Performance Inquiry</Link>
           </div>
         </div>
@@ -266,6 +263,7 @@ function Home(){
       <HeroVideo />
       <SocialEmbed />
       <LocationMap />
+      <ContactSection />
     </>
   );
 }
@@ -651,23 +649,29 @@ function ContactPage(){
         heading="We’re here for every question"
         sub="Reach out about reservations, events, or anything else."
       />
-      <Section tight title="Contact Us" overline="Say Hello" bgWord="Contact" className="section--contact">
-        <div className="contact-grid">
-          <div className="contact-card" data-cursor="view-more">
-            <h3>Email</h3>
-            <p><a href="mailto:hello@boxcarsocial.com">Info@boxcarsocialsmtx.com</a></p>
-          </div>
-          <div className="contact-card" data-cursor="view-more">
-            <h3>Phone</h3>
-            <p><a href="tel:+15122166015">(512) 216-6015</a></p>
-          </div>
-          <div className="contact-card" data-cursor="view-more">
-            <h3>Visit</h3>
-            <p>116 S Edward Gary St<br/>San Marcos, TX 78666</p>
-          </div>
-        </div>
-      </Section>
+      <ContactSection />
     </>
+  );
+}
+
+function ContactSection(){
+  return (
+    <Section tight title="Contact Us" overline="Say Hello" bgWord="Contact" className="section--contact">
+      <div className="contact-grid">
+        <div className="contact-card" data-cursor="view-more">
+          <h3>Email</h3>
+          <p><a href="mailto:hello@boxcarsocial.com">Info@boxcarsocialsmtx.com</a></p>
+        </div>
+        <div className="contact-card" data-cursor="view-more">
+          <h3>Phone</h3>
+          <p><a href="tel:+15122166015">(512) 216-6015</a></p>
+        </div>
+        <div className="contact-card" data-cursor="view-more">
+          <h3>Visit</h3>
+          <p>116 S Edward Gary St<br/>San Marcos, TX 78666</p>
+        </div>
+      </div>
+    </Section>
   );
 }
 
@@ -746,15 +750,31 @@ function EventsPage(){
       <Section overline="Events" title="What’s On?" bgWord="Events" className="section--events">
         <EventGrid />
       </Section>
+      <Section tight overline="Plan Ahead" title="Book an Event" bgWord="Booking" className="section--booking">
+        <div className="contact-grid">
+          <div className="contact-card contact-card--wide contact-card--event" data-cursor="view-more">
+            <h3>Book an Event</h3>
+            <p>Share your details and our team will help you plan the perfect gathering.</p>
+            <div className="form-embed">
+              <iframe
+                src={BOOK_EVENT_FORM_SRC}
+                title="Event Inquiry Form"
+                frameBorder="0"
+                marginHeight="0"
+                marginWidth="0"
+                allowFullScreen
+              >
+                Loading…
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </Section>
     </>
   );
 }
 
 function GalleryPage(){
-  const photos = GALLERY_IMAGES.map((file, i) => ({
-    id: i + 1,
-    img: `/${file}`,
-  }));
   return (
     <>
       <HeroVideo
@@ -762,16 +782,52 @@ function GalleryPage(){
         heading="Inside Boxcar Social"
         sub="A glimpse at the people, plates, and parties that fill our nights."
       />
-      <Section tight title="Captured Moments" overline="Gallery" bgWord="Gallery">
-        <div className="gallery-grid">
-          {photos.map((photo)=>(
-            <article key={photo.id} className="gallery__item gallery__item--grid">
-              <div className="gallery__img" style={{backgroundImage:`url(${photo.img})`}} />
-            </article>
-          ))}
-        </div>
-      </Section>
+      <GallerySection />
     </>
+  );
+}
+
+function GalleryFoodPage(){
+  return (
+    <>
+      <HeroVideo
+        overline="Gallery & Food"
+        heading="Moments and Menu"
+        sub="Browse the scenes and flavors that make Boxcar Social special."
+      />
+      <GallerySection />
+      <FoodSection />
+    </>
+  );
+}
+
+function GallerySection(){
+  const photos = GALLERY_IMAGES.map((file, i) => ({
+    id: i + 1,
+    img: `/${file}`,
+  }));
+  return (
+    <Section tight title="Captured Moments" overline="Gallery" bgWord="Gallery">
+      <div className="gallery-grid">
+        {photos.map((photo)=>(
+          <article key={photo.id} className="gallery__item gallery__item--grid">
+            <div className="gallery__img" style={{backgroundImage:`url(${photo.img})`}} />
+          </article>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function FoodSection(){
+  return (
+    <Section tight title="Food Highlights" overline="Kitchen" bgWord="Food" className="section--food">
+      <div className="food-grid">
+        {FOOD_ITEMS.map((item)=>(
+          <FoodCarousel key={item.name} item={item} />
+        ))}
+      </div>
+    </Section>
   );
 }
 

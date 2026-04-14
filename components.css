@@ -65,14 +65,15 @@
     transform:none;
     bottom:auto;
     width:100%;
-    justify-content:space-between;
+    justify-content:center;
     gap:12px;
     flex-wrap:wrap;
-    padding:0 12px;
+    padding:0 12px 12px;
   }
   .nav a{
-    font-size:.95rem;
+    font-size:.9rem;
     letter-spacing:.04em;
+    white-space:nowrap;
   }
 }
 .hours-ledger{
